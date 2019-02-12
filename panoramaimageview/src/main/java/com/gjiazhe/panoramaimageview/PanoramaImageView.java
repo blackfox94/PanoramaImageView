@@ -149,7 +149,7 @@ public class PanoramaImageView extends ImageView {
         // Draw scrollbar
         if (mEnableScrollbar) {
             switch (mOrientation) {
-                case ORIENTATION_VERTICAL: { //ORIENTATION_HORIZONTAL: {
+                case ORIENTATION_HORIZONTAL : { //ORIENTATION_HORIZONTAL: {
                     float barBgWidth = mWidth * 0.9f;
                     float barWidth = barBgWidth * mWidth / mDrawableWidth;
 
@@ -165,7 +165,7 @@ public class PanoramaImageView extends ImageView {
                     canvas.drawLine(barStartX, barY, barEndX, barY, mScrollbarPaint);
                     break;
                 }
-                case ORIENTATION_HORIZONTAL: {//ORIENTATION_VERTICAL: {
+                case ORIENTATION_VERTICAL: {//ORIENTATION_VERTICAL: {
                     float barBgHeight = mHeight * 0.9f;
                     float barHeight = barBgHeight * mHeight / mDrawableHeight;
 

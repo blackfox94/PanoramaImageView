@@ -15,6 +15,7 @@ import android.widget.ImageView;
  */
 
 public class PanoramaImageView extends ImageView {
+
     // Image's scroll orientation
     public final static byte ORIENTATION_NONE = -1;
     public final static byte ORIENTATION_HORIZONTAL = 0;
@@ -111,9 +112,11 @@ public class PanoramaImageView extends ImageView {
             mDrawableHeight = getDrawable().getIntrinsicHeight();
 
             if (mDrawableWidth * mHeight > mDrawableHeight * mWidth) {
+//                mOrientation = ORIENTATION_HORIZONTAL;
                 float imgScale = (float) mHeight / (float) mDrawableHeight;
                 mMaxOffset = Math.abs((mDrawableWidth * imgScale - mWidth) * 0.5f);
             } else if (mDrawableWidth * mHeight < mDrawableHeight * mWidth) {
+//                mOrientation = ORIENTATION_VERTICAL;
                 float imgScale = (float) mWidth / (float) mDrawableWidth;
                 mMaxOffset = Math.abs((mDrawableHeight * imgScale - mHeight) * 0.5f);
             }
@@ -128,14 +131,25 @@ public class PanoramaImageView extends ImageView {
         }
 
         // Draw image
+//        if (mOrientation == ORIENTATION_HORIZONTAL) {
         float currentOffsetX = mMaxOffset * mProgress;
         canvas.save();
         canvas.translate(currentOffsetX, 0);
         super.onDraw(canvas);
         canvas.restore();
+//        } else if (mOrientation == ORIENTATION_VERTICAL) {
+//            float currentOffsetY = mMaxOffset * mProgress;
+//            canvas.save();
+////            canvas.translate(0, currentOffsetY);
+//            canvas.translate(currentOffsetY, 0);
+//            super.onDraw(canvas);
+//            canvas.restore();
+//        }
 
         // Draw scrollbar
         if (mEnableScrollbar) {
+//            switch (mOrientation) {
+//                case ORIENTATION_HORIZONTAL : { //ORIENTATION_HORIZONTAL: {
             float barBgWidth = mWidth * 0.9f;
             float barWidth = barBgWidth * mWidth / mDrawableWidth;
 
@@ -149,6 +163,25 @@ public class PanoramaImageView extends ImageView {
             canvas.drawLine(barBgStartX, barY, barBgEndX, barY, mScrollbarPaint);
             mScrollbarPaint.setAlpha(255);
             canvas.drawLine(barStartX, barY, barEndX, barY, mScrollbarPaint);
+//                    break;
+//                }
+//                case ORIENTATION_VERTICAL: {//ORIENTATION_VERTICAL: {
+//                    float barBgHeight = mHeight * 0.9f;
+//                    float barHeight = barBgHeight * mHeight / mDrawableHeight;
+//
+//                    float barBgStartY = (mHeight - barBgHeight) / 2;
+//                    float barBgEndY = barBgStartY + barBgHeight;
+//                    float barStartY = barBgStartY + (barBgHeight - barHeight) / 2 * (1 - mProgress);
+//                    float barEndY = barStartY + barHeight;
+//                    float barX = mWidth * 0.95f;
+//
+//                    mScrollbarPaint.setAlpha(100);
+//                    canvas.drawLine(barX, barBgStartY, barX, barBgEndY, mScrollbarPaint);
+//                    mScrollbarPaint.setAlpha(255);
+//                    canvas.drawLine(barX, barStartY, barX, barEndY, mScrollbarPaint);
+//                    break;
+//                }
+//            }
         }
     }
 

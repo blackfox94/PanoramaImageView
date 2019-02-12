@@ -15,7 +15,6 @@ import android.widget.ImageView;
  */
 
 public class PanoramaImageView extends ImageView {
-
     // Image's scroll orientation
     public final static byte ORIENTATION_NONE = -1;
     public final static byte ORIENTATION_HORIZONTAL = 0;

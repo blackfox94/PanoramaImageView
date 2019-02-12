@@ -140,7 +140,8 @@ public class PanoramaImageView extends ImageView {
         } else if (mOrientation == ORIENTATION_VERTICAL) {
             float currentOffsetY = mMaxOffset * mProgress;
             canvas.save();
-            canvas.translate(0, currentOffsetY);
+//            canvas.translate(0, currentOffsetY);
+            canvas.translate(currentOffsetY, 0);
             super.onDraw(canvas);
             canvas.restore();
         }

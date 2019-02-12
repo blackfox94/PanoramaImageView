@@ -86,9 +86,13 @@ public class PanoramaImageView extends ImageView {
         }
     }
 
+    public void setOrientation(byte orientation) {
+        mOrientation = orientation;
+    }
+
     void updateProgress(float progress) {
         if (mEnablePanoramaMode) {
-            mProgress = mInvertScrollDirection? -progress : progress;
+            mProgress = mInvertScrollDirection ? -progress : progress;
             invalidate();
             if (mOnPanoramaScrollListener != null) {
                 mOnPanoramaScrollListener.onScrolled(this, -mProgress);
@@ -108,11 +112,11 @@ public class PanoramaImageView extends ImageView {
             mDrawableHeight = getDrawable().getIntrinsicHeight();
 
             if (mDrawableWidth * mHeight > mDrawableHeight * mWidth) {
-                mOrientation = ORIENTATION_HORIZONTAL;
+//                mOrientation = ORIENTATION_HORIZONTAL;
                 float imgScale = (float) mHeight / (float) mDrawableHeight;
                 mMaxOffset = Math.abs((mDrawableWidth * imgScale - mWidth) * 0.5f);
-            } else if(mDrawableWidth * mHeight < mDrawableHeight * mWidth) {
-                mOrientation = ORIENTATION_VERTICAL;
+            } else if (mDrawableWidth * mHeight < mDrawableHeight * mWidth) {
+//                mOrientation = ORIENTATION_VERTICAL;
                 float imgScale = (float) mWidth / (float) mDrawableWidth;
                 mMaxOffset = Math.abs((mDrawableHeight * imgScale - mHeight) * 0.5f);
             }
@@ -203,7 +207,7 @@ public class PanoramaImageView extends ImageView {
     }
 
     public void setEnableScrollbar(boolean enable) {
-        if (mEnableScrollbar != enable){
+        if (mEnableScrollbar != enable) {
             mEnableScrollbar = enable;
             if (mEnableScrollbar) {
                 initScrollbarPaint();
@@ -223,10 +227,8 @@ public class PanoramaImageView extends ImageView {
 
     @Override
     public void setScaleType(ScaleType scaleType) {
-        /**
-         * Do nothing because PanoramaImageView only
-         * supports {@link scaleType.CENTER_CROP}
-         */
+        //Do nothing because PanoramaImageView only
+        //supports {@link scaleType.CENTER_CROP}
     }
 
     /**
@@ -236,11 +238,10 @@ public class PanoramaImageView extends ImageView {
         /**
          * Call when the image is scrolling
          *
-         * @param view the panoramaImageView shows the image
-         *
+         * @param view           the panoramaImageView shows the image
          * @param offsetProgress value between (-1, 1) indicating the offset progress.
-         *                 -1 means the image scrolls to show its left(top) bound,
-         *                 1 means the image scrolls to show its right(bottom) bound.
+         *                       -1 means the image scrolls to show its left(top) bound,
+         *                       1 means the image scrolls to show its right(bottom) bound.
          */
         void onScrolled(PanoramaImageView view, float offsetProgress);
     }
